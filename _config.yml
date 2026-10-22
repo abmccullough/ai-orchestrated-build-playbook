@@ -1,0 +1,14 @@
+title: AI-orchestrated build playbook
+description: A repeatable process for building software with an AI orchestrator, subagents and a human product owner.
+theme: jekyll-theme-cayman
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: false
+include:
+  - _fix.md
+  - _gate.md
+  - _implement.md
+  - _review.md
+  - _triage.md
