@@ -71,8 +71,8 @@ Every dispatch names a progress log (`progress/<brief-name>.md`). The agent:
 4. logs a temporary edit before making it and again when reverted;
 5. ends with the full report, including the **complete** assumption list and questions verbatim.
 
-*Why the full report goes in the log:* on the reference project a reviewer could rule on only 8 of 12 assumptions because the report
-arrived from another machine as a chat message and the log had only the first four. The log is in git; it crosses
+*Why the full report goes in the log:* on the reference project a reviewer could rule on only some of the assumptions because the report
+arrived from another machine as a chat message and the log had only part of the list. The log is in git; it crosses
 machines and sessions.
 
 ## 2.5 Resuming: fresh agent or the old one
@@ -92,7 +92,7 @@ machines and sessions.
 ## 2.6 Concurrency
 
 - **Serial by default.** Two agents never share a checkout.
-- **A hard agent limit**, set with the owner from RAM and usage. Reference implementation: three concurrent agents on 16 GB (each worktree
+- **A hard agent limit**, set with the owner from RAM and usage. For example, a few concurrent agents on a typical developer workstation (each worktree
   builds and runs its own test database). Batches already running finish; nothing new starts at the limit.
 - **Throttle near usage limits.** Reference implementation rule: above about 80 % of the short-window usage, drop to one agent so nothing
   stalls mid-batch for hours.

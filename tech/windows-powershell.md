@@ -45,8 +45,8 @@ Claude Code on Windows, which offers both a Bash tool and a PowerShell tool).
   the Windows side. Raising the WSL cap takes memory away from them.
 - **`autoMemoryReclaim` belongs under `[experimental]`.** Under `[wsl2]` it is silently ignored. The reference project carried an inert
   copy for days. Enabling it can also break Docker in WSL, so it stayed off.
-- **Check the page file and commit limit first.** One machine's fixed 2.9 GB page file gave it a commit limit 13 GB
-  smaller than an identical machine's. It failed like missing RAM, and nothing done to RAM would fix it.
+- **Check the page file and commit limit first.** One machine's small fixed page file gave it a much lower commit limit
+  than an identical machine's. It failed like missing RAM, and nothing done to RAM would fix it.
 - After a settings change, prove the setting is live (with `wsl --shutdown` or a Docker restart, never mid-gate).
 
 ## Power and sleep

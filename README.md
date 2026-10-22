@@ -77,10 +77,10 @@ resume in-flight work from its progress log ([06-records.md](06-records.md)).
 
 ## What to adapt first
 
-- **The agent limit and models** depend on your machine and subscription; the reference implementation settled on three concurrent
-  agents on a 16 GB machine, Opus for implement and review, a small model for runners.
+- **The agent limit and models** depend on your machine and subscription; the reference implementation settled on a few concurrent
+  agents on a typical developer workstation, Opus for implement and review, a small model for runners.
 - **Gate length** drives most of the testing rules. The reference implementation's full gate with browser tests took
-  20–40 minutes, which is why there is exactly one per merge. With a five-minute gate you can afford more.
+  well over a quarter of an hour, which is why there is exactly one per merge. With a gate of a few minutes you can afford more.
 - **The owner's availability.** On the reference project the owner was away for long stretches; the autonomy rules in
   [10-working-with-the-owner.md](10-working-with-the-owner.md) exist for that.
 

@@ -66,7 +66,7 @@ Never touch another checkout. If the branch or tree is not as stated, stop and r
 - **A test must be able to fail.** A test that passes against broken code is not done.
 - <from the ledger notes, §Follow-ups and §Flake register for this area; performance patterns if it touches a list,
   job or query>
-- <language rules for user-facing text, e.g. American spelling>
+- <language rules for user-facing text, e.g. US or UK spelling>
 
 ## 9. Report
 

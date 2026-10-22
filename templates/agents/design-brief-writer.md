@@ -39,7 +39,7 @@ worktree), and what earlier batches already provide.
 - Progress log at the path the orchestrator names, created first, with a status block and an entry per step.
 - Commit only your briefs and your log, by path; never `commit -a`; never force.
 - Write each brief whole with the file-writing tool; never generate it through scripted string replacement.
-- User-facing text follows the project's language rules (<e.g. American spelling>).
+- User-facing text follows the project's language rules (<e.g. US or UK spelling>).
 
 ## Report
 

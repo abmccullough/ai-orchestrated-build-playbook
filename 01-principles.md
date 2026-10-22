@@ -138,15 +138,15 @@ waste.
 A clear, material fix is always made, whatever the loop number. A batch goes to the owner only when there is no clear
 solution: the cause is not understood, a fix failed and the next attempt would be another guess, or the fix needs a
 behavior decision. *Why:* the reference project first used a two-loop stop; twice it brought the owner a clear fix that
-they always approved. The spirit is "don't thrash without direction".
+they always approved. The spirit is: don't thrash without direction.
 
 ## 1.14 Name things in plain words
 
 Every batch id, decision id or finding id shown to the owner carries a few plain words beside it the first time in a
-message ("B12b (the remaining 11 sample email templates)"). *Why:* the owner does not memorize ids.
+message ("B12b (the remaining sample email templates)"). *Why:* the owner does not memorize ids.
 
 ## 1.15 Read the clock
 
 Never state a time or an elapsed time from feel. Record the clock when dispatching; read it again and subtract when
-checking. *Why:* on the reference project guesses ran up to 40 minutes off, triggered needless status requests and put wrong times into
+checking. *Why:* on the reference project guesses were badly off, triggered needless status requests and put wrong times into
 the resume notes a cold session trusts.

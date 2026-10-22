@@ -57,8 +57,8 @@ and *Revisit* (what would make you change it). Rules for the file:
 - Keep a line at the top: "Still open for the owner's review: …", and clear it with the owner.
 - Testing decisions also edit the testing-discipline file in the same commit; that file wins if they disagree.
 
-*Why separate the testing file:* on the reference project the decisions log grew to hundreds of kilobytes, and the owner said decisions "get lost"
-there. Within an hour of writing the testing file, it caught a retired rule still being applied from an old entry.
+*Why separate the testing file:* on the reference project the decisions log grew large, and decisions got lost
+in it. Soon after writing the testing file, it caught a retired rule still being applied from an old entry.
 
 ## 6.4 Testing-discipline and performance-lessons files
 

@@ -26,7 +26,7 @@ a record the owner can review afterwards.
 - **Small design gaps while away:** decide only if inside one batch and changing nothing users see, the security model
   or the data shape; mark the decision "for review"; list all such decisions when the owner returns, before anything
   else.
-- **Phase ends:** agree whether to wait for a go-ahead. The reference project's owner dropped the wait ("arbitrary anyway"): sweep,
+- **Phase ends:** agree whether to wait for a go-ahead. The reference project's owner dropped the wait as arbitrary: sweep,
   report, continue.
 
 ## 10.3 Minimal chat, detail in files
@@ -40,7 +40,7 @@ ledger and the progress logs, committed, which is where the owner reviews them. 
 
 At each phase end (or when asked), a short report: batches merged (plain words), decisions taken and those flagged for
 review, open questions, known risks, what is next. A browser pass over shipped screens at phase ends is worth keeping:
-the reference project's owner valued it because it "finds things other tests can't see".
+the reference project's owner valued it because it finds things other tests can't.
 
 For reports meant for others (a summary of a measurement campaign, a recommendation), put the limits or choices the
 owner must set at the top, each with a recommendation.

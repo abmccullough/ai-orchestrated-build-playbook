@@ -11,8 +11,8 @@ means always.
 - **Pin the model id** (for example `claude-opus-5-5`), not an alias, so an experiment compares like with like.
 - **The Agent tool takes no effort setting.** To run the same role at a different model or effort, copy the
   definition under a new name with identical instructions.
-- **Measure before standardizing.** The reference project logged tokens, tool calls, wall time and outcome for each dispatch over about
-  a day. Opus reviews were faster (8 minutes against about 20) and found test blind spots with probes. A cost
+- **Measure before standardizing.** The reference project logged tokens, tool calls, wall time and outcome for each dispatch over a
+  short trial. Opus reviews were markedly faster and found test blind spots with probes. A cost
   analysis then moved every implementer and reviewer to Opus. Runners stayed on Haiku.
 - **Limit a cheap model to fully specified, mechanical work** (gates, pin bumps, regeneration), and never trust its
   summary of a gate. See the addendum, §1.
@@ -27,7 +27,7 @@ means always.
 - `subagentPromptCacheTtl: "1h"` in user `settings.json` (or the environment variable
   `CLAUDE_CODE_SUBAGENT_PROMPT_CACHE_TTL`) covers subagents, background and helper requests. The main conversation
   uses `promptCacheTtl`.
-- **Why:** gates took 500 to 950 s, well past the 5-minute default, so every gate return re-wrote the agent's whole
+- **Why:** gates took many minutes, well past the 5-minute default, so every gate return re-wrote the agent's whole
   context as a fresh cache write. The owner spotted this from heavy cache-write usage.
 - The 1-hour setting is ignored while the subscription is in overage. A jump in cache usage then is the setting being
   bypassed, not a regression.
@@ -83,7 +83,7 @@ means always.
 - Above 80 % of the five-hour usage window, run one agent at a time. An agent that hits the limit stalls for up to
   five hours mid-batch. The orchestrator can't read usage itself. It relies on `/usage` output the user runs, or on an
   agent failing at the limit.
-- The reference project ran at most three concurrent agents on the main workstation. When slots were contended, the longer critical
+- The reference project ran at most a few concurrent agents on the main workstation. When slots were contended, the longer critical
   path (the pipeline lane) went first.
 - When only waiting, end the turn with a one-line status; don't fill the wait with speculative reading. To shed a
   heavy context, hand off to a fresh session (`/clear` + "read the top of the session log"; see

@@ -2,7 +2,7 @@
 
 **Applies when your stack uses Playwright end-to-end tests against a seeded local stack.** The reference project ran Chromium and Edge
 projects against the full edge stack (Caddy, API, worker, web) after a reseed, as an optional `-E2E` part of the merge
-gate. That added about 7 to 10 minutes on its own, and a full `-E2E` gate took 15 to 36 minutes.
+gate. That added several minutes on its own and made the full `-E2E` gate long.
 
 ## When to run it
 
@@ -20,10 +20,10 @@ sweeps always run end-to-end.
 
 ## Spec changes are proved by the merge gate
 
-- An implementer doesn't run its own end-to-end run just for edited specs. Its other lanes would repeat about 25 of
-  the gate's 35 minutes. Two batches each paid that to find one locator.
+- An implementer doesn't run its own end-to-end run just for edited specs. Its other lanes would repeat most of
+  the gate's runtime. Two batches each paid that to find one locator.
 - If the merge gate fails on a spec, prove the fix with one narrowed run of only the web and e2e lanes, classified
-  against the failed gated SHA (about 7 minutes). That isn't a re-run to get past a failure, because it runs only
+  against the failed gated SHA (a few minutes). That isn't a re-run to get past a failure, because it runs only
   what the fix touched.
 - After a red gate whose other lanes passed, re-run just the missing lanes on the same SHA, and record both log
   lines.

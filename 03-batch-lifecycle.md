@@ -153,5 +153,5 @@ At the end of each phase:
    questions, known risks, next phase.
 4. Push the workspace.
 
-The reference project's owner later dropped the wait at phase ends ("it is arbitrary anyway"): sweep, report, carry on. Agree with your
+The reference project's owner later dropped the wait at phase ends as arbitrary: sweep, report, carry on. Agree with your
 owner which they want; hard stops still hold either way.

@@ -33,7 +33,7 @@ Technology-specific traps (Windows paths, Docker, PostgreSQL planner behavior, a
   cold start and carries the old run's clutter.
 
 **A dead agent sends no handback.**
-- Happened: overnight runs halted more than once. Agents died or stalled (a runner sat idle for about 45 minutes) and
+- Happened: overnight runs halted more than once. Agents died or stalled (a runner sat idle for a long stretch) and
   no notification ever arrived. The orchestrator would have waited all night.
 - Rule: set an hourly check, and on each tick look for real activity: gate log files growing, test containers up,
   the same container id across ticks. If two ticks in a row show nothing changed, treat the agent as halted and
@@ -191,7 +191,7 @@ Technology-specific traps (Windows paths, Docker, PostgreSQL planner behavior, a
   covers. If the answer is nothing, skip it and record why. Scale the run to the change.
 
 **Reviewers re-ran the implementer's tests.**
-- Happened: the owner called it "a big time waster."
+- Happened: the owner saw it as wasted time.
 - Rule: a reviewer repeats a run only when the repeat can catch something new, such as a fresh-clone build or tests
   the implementer didn't run. It reads the implementer's fail checks (the break, the failing output, the restore)
   instead of repeating them.
@@ -239,7 +239,7 @@ Technology-specific traps (Windows paths, Docker, PostgreSQL planner behavior, a
 - Happened: the orchestrator instructions still required a per-batch "seed twice and diff" that a decision had
   retired the day before, and one was dispatched.
 - Rule: keep one current testing-rules file. Decision records are history and point to it. Every testing decision or
-  lesson edits that file in the same commit. "Random decision records get lost" (the owner).
+  lesson edits that file in the same commit. Scattered decision records get lost.
 
 **A skipped end-to-end lane left `main` red.**
 - Happened: a batch changed which data a report screen renders and was gated without end-to-end tests. A screen spec
@@ -273,7 +273,7 @@ Technology-specific traps (Windows paths, Docker, PostgreSQL planner behavior, a
 ## 4. Performance
 
 **Small seeds hid costs that grow with data.**
-- Happened: N+1 reads on list pages, a whole-table rebuild triggered by a one-row change (most of a 30 s timeout at
+- Happened: N+1 reads on list pages, a whole-table rebuild triggered by a one-row change (close to the request timeout at
   mid scale), aggregation in the API instead of SQL, a hot lookup with no index, and a row per date instead of a
   range (gigabytes reduced to tens of megabytes).
 - Rule: build for 100x to 1000x local data. A cost that grows with data and has a known fix (an index, batching, set
@@ -332,14 +332,14 @@ list, a job or a query.
   fail check per item), so either a warm agent or a fresh one can take it.
 
 **Content briefs drifted into British spelling.**
-- Rule: every content brief says "American spelling."
+- Rule: every content brief states the spelling convention.
 
 ---
 
 ## 6. Working with the owner
 
 **Batch ids meant nothing to the owner.**
-- Happened: "What is B23b, B19b. Need you to define them, I don't have them memorized."
+- Happened: the owner had to ask what bare batch ids meant; nobody memorizes them.
 - Rule: name a batch in plain words beside its id, every time.
 
 **Chat recaps buried the owner.**
@@ -370,9 +370,9 @@ list, a job or a query.
   clear solution: the cause isn't understood, or the last fix failed and the next would be a guess.
 
 **Phase-end checkpoints waited for a go-ahead that was arbitrary.**
-- Happened: "don't wait on me for phase end. It is arbitrary anyway."
+- Happened: the owner said not to wait on them at phase ends; the boundary was arbitrary.
 - Rule: at a phase end, run the regression sweep, write the report, push, and carry on. Still do the visual browser
-  pass, because it "finds things other tests can't see." Hard stops still stop.
+  pass, because it finds things other tests can't. Hard stops still stop.
 
 **Questions for an outside data owner blocked work.**
 - Rule: collect questions that need real enterprise data in one file, as aggregate-only questions with a "why." Build
@@ -387,16 +387,16 @@ list, a job or a query.
   error text. A theory that can't explain why the other machine works isn't a diagnosis. Check that a setting is
   live, not just present in the file. Change one variable at a time.
 - Why: advice about someone else's machine is where a guess costs the most and is noticed the least. It had already
-  been written into a decision record before the owner asked "why raise the memory cap?"
+  been written into a decision record before the owner questioned it.
 
 **Times were guessed, wrongly, about ten times in one day.**
-- Happened: guesses ran up to 40 minutes fast. A gate called "silent 45 minutes" had run 13. A needless status
+- Happened: guesses ran far fast. A gate called long-silent had barely started. A needless status
   request went to the other workstation, and wrong times went into the session notes.
 - Rule: never estimate a time or an elapsed time. Read the clock, and subtract from a start time that was itself
   read from the clock or a log. If no start was recorded, say you don't know. Mark times "(clock read)."
 
 **Permission denials inside subagents never reached the owner.**
-- Happened: "Agent permissions don't come to me."
+- Happened: the owner never saw the permission prompts raised inside agents.
 - Rule: when an agent reports a denied action, or a brief will need one, run that command in the main session so the
   owner, or the classifier, can approve it. Tell the owner what it is. If it's denied at the top level too, record the
   block and leave it for the owner. Never work around a denial.
@@ -410,7 +410,7 @@ list, a job or a query.
 ## 7. Autonomy and overnight runs
 
 **The cautious option was assumed.**
-- Happened: asked how far to go overnight, the owner chose the widest option and "spend freely" with over half the
+- Happened: asked how far to go overnight, the owner chose the widest option and to spend freely, with much of the
   weekly quota already used. An idle machine is the waste the owner cares about.
 - Rule: before an unattended stretch, ask once with the real options, then record the answer as an authorization,
   including what it doesn't cover.

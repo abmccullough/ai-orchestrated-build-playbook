@@ -36,7 +36,7 @@ API, a worker, and the web app behind Caddy.
 ## Secrets agent stalls after sleep
 
 - Symptom: after hours idle, the dev API returned 500 with `28P01 password authentication failed` for a dynamic
-  `v_...` user. The Vault agent's last token renewal was about 9 hours earlier (host sleep), so the rendered
+  `v_...` user. The Vault agent's last token renewal was many hours earlier (host sleep), so the rendered
   credential files had expired.
 - Fix: `docker restart <vault-agent container>`, then wait for fresh credential file timestamps. The API recovered
   without a restart, because new connections read the new files. The same fix applied on the demo VM.
@@ -53,10 +53,10 @@ API, a worker, and the web app behind Caddy.
 
 ## Cleanup
 
-- **Testcontainers leaves anonymous volumes.** The first sweep found 223 volumes and 10.7 GB, and a later one 329.
+- **Testcontainers leaves anonymous volumes.** Sweeps found hundreds of them and gigabytes of disk.
 - `docker volume prune -f` removes anonymous unused volumes only (`-a` would include named ones). Snapshot the named
   volumes before and after: it's one command and turns "the flag looks right" into evidence. `docker builder prune -f`
-  and `docker image prune -f` (dangling only) reclaimed about 1 GB more.
+  and `docker image prune -f` (dangling only) reclaimed a little more.
 - **Never `docker image prune -a`.** It drops digest-pinned images and forces re-pulls.
 - Prune in a quiet window, not during a gate. A build or container start can race a prune.
 - **Only the orchestrator prunes or stops project stacks**, and only on a machine with no other Docker use, with the
@@ -73,10 +73,10 @@ API, a worker, and the web app behind Caddy.
 
 ## Memory
 
-- The Docker Desktop VM (WSL 2) is capped in `.wslconfig` (reference project: 6 GB on 16 GB machines). The cap limits the VM only.
+- The Docker Desktop VM (WSL 2) is capped in `.wslconfig` (leave the host enough headroom). The cap limits the VM only.
   See `windows-powershell.md` before changing it.
-- A gate in flight left about 0.8 GB free: the WSL VM about 3.5 GB, `dotnet` about 1.3 GB, the test host about
-  0.5 GB.
+- A gate in flight can leave the host with little free memory: the WSL VM, `dotnet` and the test host all
+  hold a large share. Measure yours.
 
 ## Seeding
 

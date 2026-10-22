@@ -20,8 +20,8 @@ runs every lane: a bug in lane selection should cost time, never coverage.
 
 ## Build servers and memory
 
-- **MSBuild node reuse leaves idle `dotnet.exe` workers** (about 1 GB per build set) running after builds, gates and
-  seeds. On a 16 GB machine this starved Windows and caused out-of-memory failures that were misdiagnosed for a day.
+- **MSBuild node reuse leaves idle `dotnet.exe` workers** (a large amount of memory per build set) running after builds, gates and
+  seeds. On a typical workstation this starved Windows and caused out-of-memory failures that were misdiagnosed for a day.
 - Fix: set `MSBUILDDISABLENODEREUSE=1` for every agent shell (Claude Code project `settings.json` `env`) and in the
   gate script. For leftovers from older sessions, run `dotnet build-server shutdown` when nothing is building. It is
   graceful and also stops the Roslyn server. Never kill the workers by name.
@@ -56,7 +56,7 @@ runs every lane: a bug in lane selection should cost time, never coverage.
   alone.
 - **The unit project's gate checks read configuration and test-support files as text.** A change there runs the whole
   unit project, even when "nothing it compiles changed."
-- Slow tests that guard rare, stable failures (startup refusal, about 41 s) carry a `SignOff` trait. Normal gates
+- Slow tests that guard rare, stable failures (startup refusal, which takes tens of seconds) carry a `SignOff` trait. Normal gates
   leave them out, and phase sweeps and batches touching that code include them.
 
 ## Fail checks

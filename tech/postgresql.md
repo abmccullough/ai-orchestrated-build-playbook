@@ -89,7 +89,7 @@ fixed:
 - **Recompute everything:** a one-row change triggering a whole-table rebuild. Refresh only what changed.
 - **Aggregate in SQL**, not in the API: about 9,350 rows fetched per call and summed in code.
 - **Index every hot filter column**, on the partitioned parent, so rebuilds keep it.
-- **Store history as validity ranges, not a row per date:** 2.44 GB became 28 MB. Join per-date history by range
+- **Store history as validity ranges, not a row per date:** gigabytes became tens of megabytes. Join per-date history by range
   directly (`valid_from <= d < valid_to`), never through an expanded per-date view. The planner can't estimate the
   expansion.
 - **Bound partitioned history reads** with `valid_to > $earliest` passed as a parameter, so partitions are pruned at
@@ -97,7 +97,7 @@ fixed:
   probes by index, but measure first: when the keys are a large share of the table, a bounded sequential read was
   twice as fast.
 - **`LEFT JOIN ... WHERE x.id IS NULL` misestimates after writes.** Once dismiss/restore cycles left only cleared
-  rows, the estimate fell to 1 (actual 12,723) and every join above became a per-row loop (183 ms to 3.7 s). Use
+  rows, the estimate fell to 1 (actual: thousands) and every join above became a per-row loop (milliseconds became seconds). Use
   `NOT EXISTS`. Plan tests seed tables in their post-write state.
 - **CTEs:** a single-reference CTE joined to dates on a range was better `MATERIALIZED`. But a CTE has no
   statistics, so a grouped subquery beat a materialized CTE when the join needed estimates. Measure both. Select only

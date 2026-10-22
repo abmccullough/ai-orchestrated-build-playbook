@@ -6,15 +6,15 @@ only. The demo ran as a Dev environment, so persona sign-in worked, and connecte
 
 ## Shape
 
-- **One VM** (e2-standard-2: 2 vCPU, 8 GB, 50 GB balanced disk, Ubuntu LTS, static IP). The estimate was about
-  $59 a month. Real use was $25 in the first two weeks: $19 compute, $5 AI calls.
+- **One VM** (e2-standard-2: 2 vCPU, 8 GB, 50 GB balanced disk, Ubuntu LTS, static IP). Real use came in
+  well under the monthly estimate, mostly compute with a small share for AI calls.
 - **A front proxy** (Caddy, its own Compose project) owns ports 80 and 443. It gets real Let's Encrypt certificates
   for `demo.<ip-with-dashes>.sslip.io` and `perf.<...>` (no domain needed; a real domain later is a one-line change),
   puts **basic auth** (bcrypt hash on the VM only) in front of everything, and proxies to each stack's plain-HTTP edge
   port.
 - **Two stacks:** the demo (always up), and a performance-scale stack restored from a database dump, started on
-  request. The 5 GB performance data set was never seeded on the VM. Seeding it takes 146 minutes and 41 GB, so a
-  0.24 GB dump is copied and restored instead.
+  request. The large performance data set was never seeded on the VM. Seeding it takes hours and tens of gigabytes, so a
+  much smaller dump is copied and restored instead.
 - The VM builds from source. Production images weren't needed for a Dev demo.
 
 ## What agents build, and what the owner runs
@@ -54,7 +54,7 @@ only. The demo ran as a Dev environment, so persona sign-in worked, and connecte
   API logs through the wrapper script. The owner signs in. An in-app persona picker behind the password may be used.
 - **A browser tab can freeze** and its requests never reach the server. Check the API log before blaming the app.
 - **Running a reset from the Claude Code `!` prompt gets no stdin.** Pipe the confirmation in (`echo reset | ...`).
-  See `windows-powershell.md`. A reset took about 25 minutes with the larger demo.
+  See `windows-powershell.md`. A reset of a larger demo can take a long time.
 - **`gcloud` on PowerShell:** quote comma lists, and copy local files from their own folder (a `C:` path is read as a
   host).
 
