@@ -1,7 +1,8 @@
 title: AI-orchestrated build playbook
 description: A repeatable process for building software with an AI orchestrator, subagents and a human product owner.
-theme: jekyll-theme-cayman
+remote_theme: just-the-docs/just-the-docs@v0.10.1
 plugins:
+  - jekyll-remote-theme
   - jekyll-relative-links
 relative_links:
   enabled: true
@@ -12,3 +13,64 @@ include:
   - _implement.md
   - _review.md
   - _triage.md
+
+search_enabled: true
+heading_anchors: true
+color_scheme: light
+aux_links:
+  View on GitHub: https://github.com/abmccullough/ai-orchestrated-build-playbook
+aux_links_new_tab: true
+back_to_top: true
+back_to_top_text: Back to top
+footer_content: MIT licensed. Distilled from a real AI-orchestrated build.
+
+# Sidebar titles and order live here, so the Markdown files stay clean on GitHub.
+defaults:
+  - scope: { path: "" }
+    values: { layout: default }
+  - scope: { path: "templates" }
+    values: { nav_exclude: true, search_exclude: true }
+  - scope: { path: "README.md" }
+    values: { title: Home, nav_order: 1, permalink: / }
+  - scope: { path: "01-principles.md" }
+    values: { title: 1. Principles, nav_order: 2 }
+  - scope: { path: "02-roles-and-agents.md" }
+    values: { title: 2. Roles and agents, nav_order: 3 }
+  - scope: { path: "03-batch-lifecycle.md" }
+    values: { title: 3. The batch lifecycle, nav_order: 4 }
+  - scope: { path: "04-design-and-planning.md" }
+    values: { title: 4. Design and planning, nav_order: 5 }
+  - scope: { path: "05-briefs-and-reports.md" }
+    values: { title: 5. Briefs and reports, nav_order: 6 }
+  - scope: { path: "06-records.md" }
+    values: { title: 6. Records, nav_order: 7 }
+  - scope: { path: "07-branches-worktrees-merging.md" }
+    values: { title: 7. Branches and merging, nav_order: 8 }
+  - scope: { path: "08-testing-discipline.md" }
+    values: { title: 8. Testing discipline, nav_order: 9 }
+  - scope: { path: "09-performance-and-scale.md" }
+    values: { title: 9. Performance and scale, nav_order: 10 }
+  - scope: { path: "10-working-with-the-owner.md" }
+    values: { title: 10. Working with the owner, nav_order: 11 }
+  - scope: { path: "11-context-management.md" }
+    values: { title: 11. Context management, nav_order: 12 }
+  - scope: { path: "12-project-structure.md" }
+    values: { title: 12. Project structure, nav_order: 13 }
+  - scope: { path: "addendum-lessons-learned.md" }
+    values: { title: Lessons learned, nav_order: 14 }
+  - scope: { path: "tech/README.md" }
+    values: { title: Technology notes, nav_order: 15, has_children: true, permalink: /tech/ }
+  - scope: { path: "tech/claude-code-harness.md" }
+    values: { title: Claude Code harness, parent: Technology notes, nav_order: 1 }
+  - scope: { path: "tech/docker-and-local-stack.md" }
+    values: { title: Docker and the local stack, parent: Technology notes, nav_order: 2 }
+  - scope: { path: "tech/dotnet.md" }
+    values: { title: .NET, parent: Technology notes, nav_order: 3 }
+  - scope: { path: "tech/gcp-demo.md" }
+    values: { title: Shared demo on a cloud VM, parent: Technology notes, nav_order: 4 }
+  - scope: { path: "tech/playwright-e2e.md" }
+    values: { title: Playwright end-to-end tests, parent: Technology notes, nav_order: 5 }
+  - scope: { path: "tech/postgresql.md" }
+    values: { title: PostgreSQL and migrations, parent: Technology notes, nav_order: 6 }
+  - scope: { path: "tech/windows-powershell.md" }
+    values: { title: Windows and PowerShell, parent: Technology notes, nav_order: 7 }
