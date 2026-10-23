@@ -7,6 +7,16 @@ It is distilled from a real multi-repository build (the reference implementation
 orchestrator. Everything here worked there; the reasons are given so you can judge when a rule does not fit your
 project. Details from that project appear only as labeled examples.
 
+> **What this is for.** A basic workflow for real work with a human in the loop, not a recipe for unattended
+> generation. The owner decides behavior, sets priorities and approves anything irreversible. The agents do the
+> building and checking, and every step leaves a record the owner can audit. Treat it as a starting point: keep the
+> parts that pay for themselves on your project and drop the rest.
+>
+> **Start from a demo.** Before writing the design, go from brainstorming to a short demo spec, build a working demo
+> from it, and iterate on the demo with the people who will use it. The demo you end up with, plus what you learned
+> changing it, is the baseline for the initial design
+> ([04-design-and-planning.md](04-design-and-planning.md#before-the-design-start-from-a-demo)).
+
 - **Technology-specific notes** (stack, database, containers, secrets, browser tests, OS shell, cloud, Claude Code
   harness quirks) are in the tech notes in [`tech/`](tech/).
 - **Lessons learned and things not to do** are in [`addendum-lessons-learned.md`](addendum-lessons-learned.md).
@@ -41,7 +51,8 @@ anything irreversible.
    wrapper script that runs it under a machine-wide lock and appends one line to `progress/gates.log` (time, exit
    code, duration, `clean`/`DIRTY`, commit SHA, output file, lanes). That line is the only evidence a gate ran
    ([08-testing-discipline.md](08-testing-discipline.md)).
-5. **Write the design** (or move it in): `design/README.md` with a reading order, a glossary, a non-functional guide
+5. **Write the design** (or move it in), starting from the demo baseline
+   ([04-design-and-planning.md](04-design-and-planning.md#before-the-design-start-from-a-demo)): `design/README.md` with a reading order, a glossary, a non-functional guide
    with stable requirement ids, one document per module or area, and `design/backlog.md` for deferred scope
    ([04-design-and-planning.md](04-design-and-planning.md)).
 6. **Write the execution plan**: phases, batch cards with id, repository, dependencies, parallel eligibility, design

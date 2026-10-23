@@ -3,6 +3,24 @@
 The design says what to build and is authoritative. The plan says in what order and how each piece is accepted. Both
 live in the workspace, and only the orchestrator edits them.
 
+## Before the design: start from a demo
+
+A design written from a blank page guesses at what people need. A working demo lets them react to something real, and
+reactions are cheaper and more reliable than requirements interviews.
+
+1. **Brainstorm** with the owner and a few intended users: the problem, who has it, what a good day looks like.
+2. **Write a demo spec**: one or two pages naming the screens, the story the demo tells and the synthetic data it
+   needs. Leave out non-functional rules, integrations and edge cases.
+3. **Build the demo fast**, with stand-ins for every outside system. It is allowed to be throwaway code.
+4. **Iterate on the demo** with the people who will use it. Record each piece of feedback in the owner's words, then
+   what changed. Stop when the feedback becomes refinement rather than surprise.
+5. **Write the initial design from the demo.** The demo is the baseline for screens and behavior. The feedback log
+   explains why it looks the way it does. Then add what a demo skips: data ownership, security, non-functional
+   requirements, integrations.
+
+Keep the demo running after the build starts. Showing each phase's real build to the same people keeps the design
+honest; feedback on what users see is a good first priority group (§4.7).
+
 ## 4.1 The design folder
 
 ```
